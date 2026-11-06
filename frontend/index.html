@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dataset Insights</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Dataset Insights</h1>
+    <p>Upload a CSV, explore its quality, statistics and charts, and train a simple prediction model.</p>
+  </header>
+
+  <main>
+    <!-- 1. Upload -->
+    <section class="card" id="upload-section">
+      <h2>1. Load a dataset</h2>
+      <div class="row">
+        <input type="file" id="file-input" accept=".csv" />
+        <button id="upload-btn">Upload CSV</button>
+        <span class="muted">or</span>
+        <select id="sample-select"></select>
+        <button id="sample-btn" class="secondary">Use sample</button>
+      </div>
+      <p class="muted">Max 10 MB. Only .csv files are accepted.</p>
+      <div id="message" class="message hidden"></div>
+    </section>
+
+    <div id="results" class="hidden">
+      <!-- 2. Overview and quality -->
+      <section class="card">
+        <h2>2. Overview and data quality</h2>
+        <div class="stats" id="stat-tiles"></div>
+        <h3>Key insights</h3>
+        <ul id="insights"></ul>
+        <h3>Column details</h3>
+        <div class="table-wrap"><table id="quality-table"></table></div>
+      </section>
+
+      <!-- 3. Preview -->
+      <section class="card">
+        <h2>3. Dataset preview (first 10 rows)</h2>
+        <div class="table-wrap"><table id="preview-table"></table></div>
+      </section>
+
+      <!-- 4. Statistics -->
+      <section class="card">
+        <h2>4. Statistical summary</h2>
+        <h3>Numerical columns</h3>
+        <div class="table-wrap"><table id="numeric-table"></table></div>
+        <h3>Categorical columns</h3>
+        <div class="table-wrap"><table id="categorical-table"></table></div>
+      </section>
+
+      <!-- 5. Charts -->
+      <section class="card">
+        <h2>5. Visualizations</h2>
+        <div class="row">
+          <label>Chart
+            <select id="chart-type">
+              <option value="histogram">Histogram</option>
+              <option value="bar">Bar chart</option>
+              <option value="scatter">Scatter plot</option>
+              <option value="heatmap">Correlation heatmap</option>
+            </select>
+          </label>
+          <label id="x-label">X column <select id="x-col"></select></label>
+          <label id="y-label">Y column <select id="y-col"></select></label>
+          <button id="chart-btn">Draw chart</button>
+        </div>
+        <div id="chart" class="chart"></div>
+      </section>
+
+      <!-- 6. Prediction -->
+      <section class="card">
+        <h2>6. Prediction (Linear Regression)</h2>
+        <div class="row">
+          <label>Target (to predict) <select id="target-col"></select></label>
+        </div>
+        <p class="muted">Feature columns (numeric inputs):</p>
+        <div id="feature-list" class="checks"></div>
+        <button id="predict-btn">Train model</button>
+        <div id="prediction-result" class="hidden">
+          <div class="stats" id="metric-tiles"></div>
+          <div id="pred-chart" class="chart"></div>
+          <h3>Coefficients</h3>
+          <div class="table-wrap"><table id="coef-table"></table></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>Dataset Insights · FastAPI + Pandas + scikit-learn + Plotly.js</footer>
+  <script src="/static/script.js"></script>
+</body>
+</html>
