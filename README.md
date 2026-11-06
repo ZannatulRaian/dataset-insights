@@ -1,4 +1,4 @@
-# Dataset Insights
+<h2 align="center"> Dataset Insights</h2>
 
 A web app where you upload a CSV file and get data-quality checks, statistics, interactive charts and a simple machine-learning prediction.
 
@@ -6,7 +6,7 @@ A web app where you upload a CSV file and get data-quality checks, statistics, i
 
 ---
 
-## 1. Software you need
+## 1. Software needed
 
 
 | Software       | Version       | Why                   | Download                                        |
@@ -59,7 +59,7 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-Your prompt should now start with `(venv)`.
+The prompt should now start with `(venv)`.
 
 ### Install dependencies
 
